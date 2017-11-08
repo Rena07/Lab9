@@ -103,6 +103,74 @@ public class Colosseum {
      *         <p>
      */
     public static Pokemon buildPokemon() {
+        Pokemon tempPokemon = new Pokemon();
+        Scanner in = new Scanner(System.in);
+        int hitpoint = 0;
+        int attacklevel = 0;
+        int defenselevel = 0;
+        boolean flag = false;
+        boolean va = false;
+        boolean valida = false;
+        String name = "";
+        System.out.println("Select from the following Pokemon types:");
+        System.out.println("1 - Electric Pokemon");
+        System.out.println("2 - Fire Pokemon");
+        System.out.println("3 - Water Pokemon");
+        int temp = in.nextInt();
+        while (temp != 1 || temp !=2 || temp != 3) {
+            System.out.println("Sorry, you must pick either 1, 2, or 3.");
+            System.out.println("Select from the following Pokemon types:");
+            System.out.println("1 - Electric Pokemon");
+            System.out.println("2 - Fire Pokemon");
+            System.out.println("3 - Water Pokemon");
+            temp = in.nextInt();
+        }
+        if (temp == 1) {
+            pokeType = "Electric";
+        } else if (temp == 2) {
+            pokeType = "Fire";
+        } else if (temp == 3) {
+            pokeType = "Water";
+        }
+        System.out.println("Please name your Pokemon: ");
+        name = in.nextLine();
+        System.out.println("How many hit points will it have? (1-50): ");
+        do {
+            int hit = in.nextInt();
+            if (50 >= hit && hit >= 1) {
+                hitpoint = hit;
+                flag = true;
+            } else {
+                flag = false;
+                System.out.println("Sorry. Hit points must be between 1 and 50: ");
+                in.nextLine();
+            }
+        } while (!flag);
+
+        System.out.println("Enter your attack level (1-49): ");
+        do {
+        int attack = in.nextInt();
+        if (49 >= attack && attack >= 1) {
+            va = true;
+            attacklevel = attack;
+
+        } else {
+            va = false;
+            System.out.println("Sorry. The attack level must be between 1 and 49: ");
+            in.nextLine();
+        }
+        } while (!va);
+        System.out.println("Enter your defense level (1-" + "" + (hitpoint - attacklevel) + "): ");
+        do {
+        int defense = in.nextInt();
+        if (defense <= (hitpoint - attacklevel) && defense >= 1) {
+            defenselevel = defense;
+            valida = true;
+        }
+        in.close();
+        return tempPokemon;
+    }
+
         Pokemon returnPokemon = null;
         return returnPokemon;
     }
